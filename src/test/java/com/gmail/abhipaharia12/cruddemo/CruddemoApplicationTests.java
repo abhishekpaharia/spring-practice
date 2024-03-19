@@ -1,10 +1,10 @@
-package com.luv2code.springboot.demo.mycoolapp;
+package com.gmail.abhipaharia12.cruddemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MycoolappApplicationTests {
+class CruddemoApplicationTests {
 
 	@Test
 	void contextLoads() {
