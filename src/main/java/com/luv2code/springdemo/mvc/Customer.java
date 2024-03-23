@@ -61,4 +61,12 @@ public class Customer {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public String toString() {
+        return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", freePasses=" + freePasses
+                + ", postalCode=" + postalCode + ", courseCode=" + courseCode + "]";
+    }
+
+    
 }
