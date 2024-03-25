@@ -1,13 +1,13 @@
-package com.gmail.abhipaharia12.restdemo;
+package com.luv2code.springboot.demosecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestdemoApplication {
+public class DemosecurityApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestdemoApplication.class, args);
+		SpringApplication.run(DemosecurityApplication.class, args);
 	}
 
 }

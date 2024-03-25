@@ -1,10 +1,10 @@
-package com.gmail.abhipaharia12.restdemo;
+package com.luv2code.springboot.demosecurity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestdemoApplicationTests {
+class DemosecurityApplicationTests {
 
 	@Test
 	void contextLoads() {
