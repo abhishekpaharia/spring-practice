@@ -21,8 +21,33 @@ public class CruddemoApplication {
 
 		return runner -> {
 			//createInstructor(appDAO);
-			deleteInstructor(appDAO);
+			//deleteInstructorDetail(appDAO);
+			findInstructorDetail(appDAO);
 		};
+	}
+	private void deleteInstructorDetail(AppDao appDAO) {
+
+		int theId = 3;
+		System.out.println("Deleting instructor detail id: " + theId);
+
+		appDAO.deleteInstructorDetailById(theId);
+
+		System.out.println("Done!");
+	}
+
+	private void findInstructorDetail(AppDao appDAO) {
+
+		// get the instructor detail object
+		int theId = 6;
+		InstructorDetail tempInstructorDetail = appDAO.findInstructorDetailById(theId);
+
+		// print the instructor detail
+		System.out.println("tempInstructorDetail: " + tempInstructorDetail);
+
+		// print the associated instructor
+		System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
+
+		System.out.println("Done!");
 	}
 
 	private void deleteInstructor(AppDao appDAO) {
@@ -80,9 +105,11 @@ public class CruddemoApplication {
 		// NOTE: this will ALSO save the details object
 		// because of CascadeType.ALL
 		//
+		System.out.println("before save : " + tempInstructorDetail);
 		System.out.println("Saving instructor: " + tempInstructor);
 		appDAO.save(tempInstructor);
-
 		System.out.println("Done!"); 
+		System.out.println("after save : " + tempInstructorDetail);
+		System.out.println("Saved instructor: " + tempInstructor);
 	}
 }
