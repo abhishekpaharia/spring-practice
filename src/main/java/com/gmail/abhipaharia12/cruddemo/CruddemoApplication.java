@@ -22,7 +22,8 @@ public class CruddemoApplication {
 		return runner -> {
 			//createInstructor(appDAO);
 			//deleteInstructorDetail(appDAO);
-			findInstructorDetail(appDAO);
+			//findInstructorDetail(appDAO);
+			createInstructorDetailWithInstructor(appDAO);
 		};
 	}
 	private void deleteInstructorDetail(AppDao appDAO) {
@@ -74,18 +75,6 @@ public class CruddemoApplication {
 
 	private void createInstructor(AppDao appDAO) {
 
-		/* 
-		// create the instructor
-		Instructor tempInstructor =
-				new Instructor("Chad", "Darby", "darby@luv2code.com");
-
-		// create the instructor detail
-		InstructorDetail tempInstructorDetail =
-				new InstructorDetail(
-						"http://www.luv2code.com/youtube",
-						"Luv 2 code!!!");
-		
-		*/
 		
 		// create the instructor
 		Instructor tempInstructor =
@@ -100,14 +89,38 @@ public class CruddemoApplication {
 		// associate the objects
 		tempInstructor.setInstructorDetail(tempInstructorDetail);
 
-		// save the instructor
-		//
-		// NOTE: this will ALSO save the details object
-		// because of CascadeType.ALL
-		//
+		// No need for this, because there is no column in instructor_detail table whose value depends on tempInstructor.id
+		//tempInstructorDetail.setInstructor(tempInstructor);
+
 		System.out.println("before save : " + tempInstructorDetail);
 		System.out.println("Saving instructor: " + tempInstructor);
 		appDAO.save(tempInstructor);
+		System.out.println("Done!"); 
+		System.out.println("after save : " + tempInstructorDetail);
+		System.out.println("Saved instructor: " + tempInstructor);
+	}
+
+	private void createInstructorDetailWithInstructor(AppDao appDAO) {
+
+		// create the instructor detail
+		InstructorDetail tempInstructorDetail =
+				new InstructorDetail(
+						"http://www.luv2code.com/youtube",
+						"Guitar");
+		
+		// create the instructor
+		Instructor tempInstructor =
+		new Instructor("Madhu", "Patel", "madhu@luv2code.com");
+
+		// associate the objects
+		tempInstructorDetail.setInstructor(tempInstructor);
+
+		// if you dont add below line, instructor_detail_id will be null
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		System.out.println("before save : " + tempInstructorDetail);
+		System.out.println("Saving instructor: " + tempInstructor);
+		appDAO.saveInstructorDetail(tempInstructorDetail);
 		System.out.println("Done!"); 
 		System.out.println("after save : " + tempInstructorDetail);
 		System.out.println("Saved instructor: " + tempInstructor);
