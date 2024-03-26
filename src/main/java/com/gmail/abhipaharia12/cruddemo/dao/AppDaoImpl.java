@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gmail.abhipaharia12.cruddemo.entity.Course;
 import com.gmail.abhipaharia12.cruddemo.entity.Instructor;
@@ -11,7 +12,6 @@ import com.gmail.abhipaharia12.cruddemo.entity.InstructorDetail;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
 
 @Repository
 public class AppDaoImpl implements AppDao{
@@ -98,5 +98,19 @@ public class AppDaoImpl implements AppDao{
         Instructor instructor = query.getSingleResult();
 
         return instructor;
+    }
+
+    @Transactional
+    @Override
+    public void testTransactionAndSession(){
+        int theId = 1;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = findInstructorById(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
+		System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
+		List<Course> courses = tempInstructor.getCourses();
+    	System.out.println("the associated courses: " + courses);
     }
 }

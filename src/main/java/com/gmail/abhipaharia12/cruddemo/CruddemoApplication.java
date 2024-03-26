@@ -2,6 +2,7 @@ package com.gmail.abhipaharia12.cruddemo;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +13,9 @@ import com.gmail.abhipaharia12.cruddemo.entity.Course;
 import com.gmail.abhipaharia12.cruddemo.entity.Instructor;
 import com.gmail.abhipaharia12.cruddemo.entity.InstructorDetail;
 
+
 @SpringBootApplication
 public class CruddemoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
@@ -27,8 +28,8 @@ public class CruddemoApplication {
 			//deleteInstructorDetail(appDAO);
 			//findInstructorDetail(appDAO);
 			//createInstructorWithCourses(appDAO);
-			//findInstructor(appDAO)
-			findInstructorWithCoursesJoinFetch(appDAO);
+			//findInstructorWithCoursesJoinFetch(appDAO);
+			testTransactionAndSession(appDAO);
 		};
 	}
 
@@ -150,8 +151,12 @@ public class CruddemoApplication {
 		Instructor tempInstructor = appDAO.findInstructorById(theId);
 
 		System.out.println("tempInstructor: " + tempInstructor);
-		//System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
+		System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
+	}
 
+	private void testTransactionAndSession(AppDao appDAO) {
+		appDAO.testTransactionAndSession();
+		
 	}
 
 	private void createInstructor(AppDao appDAO) {
@@ -194,4 +199,7 @@ public class CruddemoApplication {
 		System.out.println("after save : " + tempInstructorDetail);
 		System.out.println("Saved instructor: " + tempInstructor);
 	}
+
+
 }
+
