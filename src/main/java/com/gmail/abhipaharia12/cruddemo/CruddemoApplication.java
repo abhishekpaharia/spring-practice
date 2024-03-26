@@ -2,7 +2,6 @@ package com.gmail.abhipaharia12.cruddemo;
 
 import java.util.List;
 
-import org.hibernate.Session;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +23,7 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDao appDAO) {
 
 		return runner -> {
+			//findInstructor(appDAO);
 			//createInstructor(appDAO);
 			//deleteInstructorDetail(appDAO);
 			//findInstructorDetail(appDAO);
@@ -152,6 +152,10 @@ public class CruddemoApplication {
 
 		System.out.println("tempInstructor: " + tempInstructor);
 		System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
+
+		// will throw error as hibernate session is closed
+		//List<Course> courses = tempInstructor.getCourses();
+    	//System.out.println("the associated courses: " + courses);
 	}
 
 	private void testTransactionAndSession(AppDao appDAO) {
