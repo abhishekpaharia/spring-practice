@@ -1,5 +1,7 @@
 package com.gmail.abhipaharia12.cruddemo;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,9 +26,52 @@ public class CruddemoApplication {
 			//createInstructor(appDAO);
 			//deleteInstructorDetail(appDAO);
 			//findInstructorDetail(appDAO);
-			createInstructorWithCourses(appDAO);
+			//createInstructorWithCourses(appDAO);
+			//findInstructor(appDAO)
+			findInstructorWithCoursesJoinFetch(appDAO);
 		};
 	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDao appDAO) {
+
+		int theId = 1;
+
+		// find the instructor
+		System.out.println("Finding instructor id: " + theId);
+		Instructor tempInstructor = appDAO.findInstructorByIdJoinFetch(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
+		System.out.println("the associated courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done!");
+	}
+
+	private void findCoursesForInstructor(AppDao appDAO) {
+
+		int theId = 1;
+		// find instructor
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("tempInstructor: " + tempInstructor);
+
+		// find courses for instructor
+		System.out.println("Finding courses for instructor id: " + theId);
+		List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+
+		// associate the objects. 
+		// if you comment this line, then it will throw error because and lazy load variable if accessed using instance variable 
+		// in entity class it self or using getter. hibernate try to access it using SQL query but the hibernate session will be closed.
+		// so we have assign the lazt loaded variable (courses) using set method. we have execute the separate query of the courses or 
+		// you can use join fetch
+		tempInstructor.setCourses(courses);
+
+		System.out.println("the associated courses: " + tempInstructor.getCourses());
+
+		System.out.println("Done!");
+	}
+
 	private void createInstructorWithCourses(AppDao appDAO) {
 
 		// create the instructor
@@ -99,13 +144,13 @@ public class CruddemoApplication {
 
 	private void findInstructor(AppDao appDAO) {
 
-		int theId = 2;
+		int theId = 1;
 		System.out.println("Finding instructor id: " + theId);
 
 		Instructor tempInstructor = appDAO.findInstructorById(theId);
 
 		System.out.println("tempInstructor: " + tempInstructor);
-		System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
+		//System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
 
 	}
 
