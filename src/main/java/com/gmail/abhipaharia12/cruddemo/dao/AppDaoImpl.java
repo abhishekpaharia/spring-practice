@@ -40,9 +40,16 @@ public class AppDaoImpl implements AppDao{
     @Override
     @Transactional
     public void deleteInstructorById(int theId) {
-
         // retrieve the instructor
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+
+        // get the courses
+        List<Course> courses = tempInstructor.getCourses();
+
+        // break association of all courses for the instructor
+        for (Course tempCourse : courses) {
+            tempCourse.setInstructor(null);
+        }
 
         // delete the instructor
         entityManager.remove(tempInstructor);
@@ -113,4 +120,38 @@ public class AppDaoImpl implements AppDao{
 		List<Course> courses = tempInstructor.getCourses();
     	System.out.println("the associated courses: " + courses);
     }
+
+    @Override
+    @Transactional
+    public void update(Instructor tempInstructor) {
+        entityManager.merge(tempInstructor);
+    }
+
+    @Override
+    @Transactional
+    public void update(Course tempCourse) {
+        entityManager.merge(tempCourse);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCourseById(int theId) {
+
+        // retrieve the course
+        Course tempCourse = entityManager.find(Course.class, theId);
+        System.out.println("before delete course: " + tempCourse.getInstructor().getCourses());
+
+        // delete the course
+        entityManager.remove(tempCourse);
+
+        // both courses list are same as tempCourse is in remved state. there is nor association of the java 
+        // object with db. its simple java class now.
+        System.out.println("after after course: " + tempCourse.getInstructor().getCourses());
+        
+    }
+    @Override
+    public Course findCourseById(int theId) {
+        return entityManager.find(Course.class, theId);
+    }
+
 }
