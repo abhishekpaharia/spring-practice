@@ -5,6 +5,7 @@ import java.util.List;
 import com.gmail.abhipaharia12.cruddemo.entity.Course;
 import com.gmail.abhipaharia12.cruddemo.entity.Instructor;
 import com.gmail.abhipaharia12.cruddemo.entity.InstructorDetail;
+import com.gmail.abhipaharia12.cruddemo.entity.Student;
 
 public interface AppDao {
 
@@ -35,4 +36,13 @@ public interface AppDao {
     void save(Course theCourse);
 
     Course findCourseAndReviewsByCourseId(int theId);
+
+    Course findCourseAndStudentsByCourseId(int theId);
+
+    Student findStudentAndCoursesByStudentId(int theId);
+
+    void update(Student tempStudent);
+
+    void deleteStudentById(int theId);
+    
 }
