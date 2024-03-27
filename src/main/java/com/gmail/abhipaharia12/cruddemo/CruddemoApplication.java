@@ -11,6 +11,7 @@ import com.gmail.abhipaharia12.cruddemo.dao.AppDao;
 import com.gmail.abhipaharia12.cruddemo.entity.Course;
 import com.gmail.abhipaharia12.cruddemo.entity.Instructor;
 import com.gmail.abhipaharia12.cruddemo.entity.InstructorDetail;
+import com.gmail.abhipaharia12.cruddemo.entity.Review;
 
 
 @SpringBootApplication
@@ -39,6 +40,39 @@ public class CruddemoApplication {
 
 			deleteCourse(appDAO);
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDao appDAO) {
+
+		// get the course and reviews
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		// print the course
+		System.out.println(tempCourse);
+
+		// print the reviews
+		System.out.println(tempCourse.getReviews());
+	}
+
+	private void createCourseAndReviews(AppDao appDAO) {
+
+		// create a course
+		Course tempCourse = new Course("Pacman - How To Score One Million Points");
+
+		// add some reviews
+		tempCourse.addReview(new Review("Great course ... loved it!"));
+		tempCourse.addReview(new Review("Cool course, job well done."));
+		tempCourse.addReview(new Review("What a dumb course, you are an idiot!"));
+
+		// save the course ... and leverage the cascade all
+		System.out.println("Saving the course");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+
+		appDAO.save(tempCourse);
+
+		System.out.println("Done!");
 	}
 
 	private void deleteCourse(AppDao appDAO) {
@@ -211,10 +245,6 @@ public class CruddemoApplication {
     	//System.out.println("the associated courses: " + courses);
 	}
 
-	private void testTransactionAndSession(AppDao appDAO) {
-		appDAO.testTransactionAndSession();
-		
-	}
 
 	private void createInstructor(AppDao appDAO) {
 
@@ -257,6 +287,10 @@ public class CruddemoApplication {
 		System.out.println("Saved instructor: " + tempInstructor);
 	}
 
+	private void testTransactionAndSession(AppDao appDAO) {
+		appDAO.testTransactionAndSession();
+		
+	}
 
 }
 
