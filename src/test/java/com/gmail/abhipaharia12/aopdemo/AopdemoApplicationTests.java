@@ -1,10 +1,10 @@
-package com.gmail.abhipaharia12.cruddemo;
+package com.gmail.abhipaharia12.aopdemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CruddemoApplicationTests {
+class AopdemoApplicationTests {
 
 	@Test
 	void contextLoads() {
