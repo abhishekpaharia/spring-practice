@@ -29,6 +29,8 @@ public class AopdemoApplication {
 		// call the business method
 		theAccountDAO.addAccount();
 
+		theMembershipDAO.addAccount();
+
 		// // do it again!
 		// System.out.println("\n let's call it again!\n");
 
@@ -36,7 +38,14 @@ public class AopdemoApplication {
 		// theAccountDAO.addAccount();
 
 		// call the membership business method
-		theMembershipDAO.addAccount();
+
+		// call the accountdao getter/setter methods
+		theAccountDAO.setName("foobar");
+		theAccountDAO.setServiceCode("silver");
+
+		String name = theAccountDAO.getName();
+		String code = theAccountDAO.getServiceCode();
+
 	}
 
 }
