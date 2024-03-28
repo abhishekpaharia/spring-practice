@@ -1,8 +1,10 @@
 package com.gmail.abhipaharia12.aopdemo.dao;
 
-public interface AccountDAO {
+import java.util.List;
 
-    void addAccount();
+import com.gmail.abhipaharia12.aopdemo.Account;
+
+public interface AccountDAO {
 
     public String getName();
 
@@ -11,4 +13,10 @@ public interface AccountDAO {
     public String getServiceCode();
 
     public void setServiceCode(String serviceCode);
+
+    List<Account> findAccounts();
+
+    void addAccount(Account theAccount, boolean vipFlag);
+
+    boolean doWork();
 }
