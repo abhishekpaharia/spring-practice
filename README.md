@@ -1,4 +1,4 @@
-# Spring-practice
+# spring-practice
 Spring-practice repo contains spring boot and related frameworks' concepts and their code implementation. The following things are achieved after completing the repo.  
 
 🔍 Mastered Spring boot fundamentals and Spring Core concepts.  
