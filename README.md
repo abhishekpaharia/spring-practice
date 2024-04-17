@@ -12,4 +12,4 @@ Spring-pracice repo contains spring boot and related frameworks' concepts and th
 
 # How to use Repository
 Each branch loosely contains an aspect of learning spring and other frameworks. Go to the specific branch to see the code related to the concepts it encompasses.  
-For example 
+For example Branch "sprig-boot-rest-employees" contains a REST web service that endpoints for crud operation of employees data from MySQL database using Hibernate JPA. 
